@@ -1,0 +1,33 @@
+import React, { useEffect, useState } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [isim, setIsım] = useState("Mehmet");
+
+  useEffect(() => {
+    console.log('useEffec ten merhaba')
+  }, [isim]);
+
+  return (
+    <div className="App">
+      <h1>Merhaba, {isim}</h1>
+      <button onClick = {() => setIsım("Ahmet")} > İsmi Değiştir</button>
+      <MesajGoster />
+    </div>
+  );
+}
+
+function MesajGoster() {
+  const[birinciyiGoster,setBirinciyiGoster] = useState(true);
+  useEffect(() => {
+    console.log("MesajGoster useEffect");
+  } , [birinciyiGoster]);
+  return (
+    <div>
+      {birinciyiGoster
+      ?<h3> Hayatta en hakiki mürşit ilimdir.</h3>
+      :<h3> Beni Türk hekimlerine emanet ediniz.</h3>}
+      <button onClick = {() => setBirinciyiGoster(!birinciyiGoster)}> Mesajı değiştir </button>
+    </div>
+  );
+}

@@ -1,0 +1,45 @@
+import React, { useEffect, useState } from "react";
+import "./styles.css";
+
+//onClick, onChange, onSubmit, onFocus, onBlur
+//preventDefault() , stopPropagation()
+
+
+export default function App() {
+
+  return (
+    <div onClick={() => {
+      console.log("App divinde tıklandı")
+    }} className="App">
+      <h1>React Dersleri</h1>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        console.log('Form gönderildi')
+      }}>
+        Isım :{" "} 
+        <input
+        name="isim" 
+        onClick={(e) => {
+          e.stopPropagation();
+          console.log("input tıklandı")
+        }}
+        onFocus={() => {
+          console.log('Imleç inputun içinde');
+        }}
+
+        onBlur={(e) => {
+          const name = e.target.value;
+          if(name.length<8){
+            alert("şifre en az 8 karakterli olmalıdır")
+          }
+        }}
+
+        onChange={(e) => 
+          console.log('Bir şey yazıldı ', 
+          e.target.name, e.target.value)
+        }
+         /> 
+        </form>
+    </div>
+  );
+}
